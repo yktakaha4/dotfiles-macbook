@@ -152,6 +152,15 @@ alias iam='aws sts get-caller-identity --query Arn --output text'
 # pyenv
 eval "$(pyenv init --path)"
 eval "$(pyenv init -)"
+export VIRTUAL_ENV_DISABLE_PROMPT="true"
+
+# pipenv
+export PIPENV_VENV_IN_PROJECT="true"
+
+# poetry
+pyenv which poetry > /dev/null 2>&1 && (
+  poetry config virtualenvs.in-project true
+)
 
 # nodenv
 eval "$(nodenv init -)"
@@ -169,3 +178,9 @@ eval "$(direnv hook zsh)"
 [[ -L "$HOME/.gitconfig" ]] || ln -s "$HOME/.dotfiles-macbook/.gitconfig" "$HOME/.gitconfig"
 [[ -L "$HOME/.vimrc" ]] || ln -s "$HOME/.dotfiles-macbook/.vimrc" "$HOME/.vimrc"
 [[ -L "$HOME/.gitignore" ]] || ln -s "$HOME/.dotfiles-macbook/.gitignore" "$HOME/.gitignore"
+
+# compile
+if [[ "$HOME/.zshrc" -nt "$HOME/.zshrc.zwc" ]]
+then
+   zcompile "$HOME/.zshrc"
+fi
