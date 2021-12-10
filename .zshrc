@@ -112,6 +112,7 @@ zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 
 # pure
 prompt pure
+export PURE_PROMPT_SYMBOL='$'
 
 # alias
 alias vzrc='vim ~/.zshrc'
